@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator - Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="background-animation">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+        
+        <div class="card">
+            <div class="header">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Password Generator</h1>
+                <p>Create secure passwords with Flask backend</p>
+            </div>
+            
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="length">Password Length</label>
+                    <div class="length-controls">
+                        <input type="range" id="length" min="4" max="50" value="12">
+                        <span id="lengthValue">12</span>
+                    </div>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option">
+                        <input type="checkbox" id="uppercase" checked>
+                        <label for="uppercase">
+                            <i class="fas fa-font"></i>
+                            Uppercase (A-Z)
+                        </label>
+                    </div>
+                    
+                    <div class="option">
+                        <input type="checkbox" id="lowercase" checked>
+                        <label for="lowercase">
+                            <i class="fas fa-font"></i>
+                            Lowercase (a-z)
+                        </label>
+                    </div>
+                    
+                    <div class="option">
+                        <input type="checkbox" id="numbers" checked>
+                        <label for="numbers">
+                            <i class="fas fa-hashtag"></i>
+                            Numbers (0-9)
+                        </label>
+                    </div>
+                    
+                    <div class="option">
+                        <input type="checkbox" id="symbols" checked>
+                        <label for="symbols">
+                            <i class="fas fa-at"></i>
+                            Symbols (!@#$...)
+                        </label>
+                    </div>
+                </div>
+                
+                <button id="generateBtn" class="generate-btn">
+                    <i class="fas fa-magic"></i>
+                    <span class="btn-text">Generate Password</span>
+                    <div class="loading-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+            </div>
+            
+            <div class="result-section">
+                <div class="password-display">
+                    <input type="text" id="passwordOutput" readonly placeholder="Your secure password will appear here...">
+                    <button id="copyBtn" class="copy-btn" title="Copy to clipboard">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                
+                <div class="strength-meter">
+                    <div class="strength-label">Password Strength:</div>
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                    <div class="strength-text" id="strengthText">Generate a password to see strength</div>
+                </div>
+                
+                <div class="strength-feedback" id="strengthFeedback" style="display: none;">
+                    <div class="feedback-title">Suggestions:</div>
+                    <ul id="feedbackList"></ul>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p><i class="fas fa-server"></i> Powered by Flask Backend</p>
+                <p>Keep your accounts secure with cryptographically strong passwords</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <i class="fas fa-check"></i>
+        <span id="notificationText">Password copied to clipboard!</span>
+    </div>
+    
+    <div class="error-notification" id="errorNotification">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="errorText">An error occurred!</span>
+    </div>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

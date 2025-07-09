@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>✨ Stylish Calculator</h1>
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider">
+                    <div class="star star_1"></div>
+                    <div class="star star_2"></div>
+                    <div class="star star_3"></div>
+                    <svg class="cloud" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 19C4.34 19 3 17.66 3 16S4.34 13 6 13C6.35 13 6.69 13.06 7 13.17C7.18 10.84 9.22 9 11.7 9C13.76 9 15.5 10.5 15.91 12.4C17.08 12.63 18 13.68 18 15C18 16.66 16.66 18 15 18H6Z" />
+                    </svg>
+                </span>
+            </label>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="calculator">
+            <div class="display">
+                <div class="display-previous" id="previousDisplay"></div>
+                <div class="display-current" id="currentDisplay">0</div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-clear" onclick="clearAll()">C</button>
+                <button class="btn btn-clear" onclick="backspace()">⌫</button>
+                <button class="btn btn-operator" onclick="inputOperator('%')">%</button>
+                <button class="btn btn-operator" onclick="inputOperator('/')">÷</button>
+
+                <button class="btn" onclick="inputNumber('7')">7</button>
+                <button class="btn" onclick="inputNumber('8')">8</button>
+                <button class="btn" onclick="inputNumber('9')">9</button>
+                <button class="btn btn-operator" onclick="inputOperator('*')">×</button>
+
+                <button class="btn" onclick="inputNumber('4')">4</button>
+                <button class="btn" onclick="inputNumber('5')">5</button>
+                <button class="btn" onclick="inputNumber('6')">6</button>
+                <button class="btn btn-operator" onclick="inputOperator('-')">−</button>
+
+                <button class="btn" onclick="inputNumber('1')">1</button>
+                <button class="btn" onclick="inputNumber('2')">2</button>
+                <button class="btn" onclick="inputNumber('3')">3</button>
+                <button class="btn btn-operator" onclick="inputOperator('+')">+</button>
+
+                <button class="btn btn-history" onclick="showHistory()">History</button>
+                <button class="btn" onclick="inputNumber('.')">.</button>
+                <button class="btn btn-equals" onclick="calculate()">=</button>
+
+                <button class="btn btn-zero" onclick="inputNumber('0')">0</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div class="history-modal" id="historyModal">
+        <div class="history-content">
+            <div class="history-header">
+                <h2>Calculation History</h2>
+                <button class="close-btn" onclick="closeHistory()">×</button>
+            </div>
+            <div id="historyList"></div>
+            <button class="clear-history-btn" onclick="clearHistory()">Clear All History</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

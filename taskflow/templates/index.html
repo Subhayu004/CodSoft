@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Name Input Modal -->
+    <div class="name-modal" id="nameModal">
+        <div class="name-modal-content">
+            <h2>Welcome to TaskFlow! 🎯</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Let's get to know you better</p>
+            <input type="text" id="nameInput" placeholder="Enter your name..." maxlength="30">
+            <button onclick="setUserName()">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">TaskFlow</div>
+            <div class="navbar-controls">
+                <div class="clock" id="clock">12:00:00 AM</div>
+                <button class="theme-toggle" onclick="toggleTheme()">🌓 Dark Mode</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="welcome-section">
+            <div class="welcome-message" id="welcomeMessage">Good Morning, User!</div>
+            <div class="welcome-subtitle">Organize your life, one task at a time</div>
+        </div>
+
+        <div class="app-container">
+            <div class="task-section">
+                <form class="add-task-form" id="addTaskForm">
+                    <input type="text" class="add-task-input" id="taskInput" placeholder="What needs to be done?">
+                    <select class="task-type-select" id="taskType">
+                        <option value="daily">Daily</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                    <button type="submit" class="add-btn">✨ Add Task</button>
+                </form>
+                
+                <div class="tasks-container" id="tasksContainer"></div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalTasks">0</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="completedTasks">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="pendingTasks">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="task-filter">
+                    <div class="filter-title">Filter Tasks</div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterTasks('all')">📋 All Tasks</button>
+                        <button class="filter-btn" onclick="filterTasks('daily')">📅 Daily Tasks</button>
+                        <button class="filter-btn" onclick="filterTasks('monthly')">📆 Monthly Tasks</button>
+                        <button class="filter-btn" onclick="filterTasks('yearly')">🗓️ Yearly Tasks</button>
+                        <button class="filter-btn" onclick="filterTasks('completed')">✅ Completed</button>
+                        <button class="filter-btn" onclick="filterTasks('pending')">⏳ Pending</button>
+                    </div>
+                </div>
+
+                <div class="task-history">
+                    <div class="filter-title">Recent Activity</div>
+                    <div id="taskHistory">
+                        <div class="history-item">
+                            <span class="history-action">Welcome!</span> Start adding tasks to see your activity here.
+                        </div>
+                    </div>
+                </div>
+                    <div class="ai-quick-actions">
+                    <h3>🤖 AI Assistant</h3>
+                    <button class="ai-quick-btn" onclick="askAIForTaskSuggestions()">
+                        💡 Get Task Suggestions
+                    </button>
+                    <button class="ai-quick-btn" onclick="askAIForSchedule()">
+                        📅 Create Schedule
+                    </button>
+                    <button class="ai-quick-btn" onclick="askAIForProductivityTips()">
+                        🎯 Productivity Tips
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <button id="aiAssistantButton" class="floating-ai-button">
+        🤖 AI Assistant
+    </button>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <footer style="text-align: center; padding: 10px; font-size: 0.85rem; color: var(--text-secondary);">
+    © 2025 TaskFlow. All rights reserved.
+</footer>
+
+</body>
+</html>
